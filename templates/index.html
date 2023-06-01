@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Caption Generator</title>
+</head>
+<body>
+    <h1>Image Caption Generator</h1>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <br><br>
+        <input type="submit" value="Upload Image">
+    </form>
+
+    {% if image %}
+        <h2>Uploaded Image:</h2>
+        <img src="data:image/png;base64,{{ image }}" alt="Uploaded Image" width="300">
+    {% endif %}
+
+    {% if captions %}
+        <h2>Captions:</h2>
+        <ul>
+            {% for caption in captions %}
+                <li>{{ caption }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
